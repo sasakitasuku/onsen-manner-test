@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性入力 - 温泉マナー検定</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h2>回答者情報の入力</h2>
+        <form id="attributeForm">
+            <div class="form-group">
+                <label>学年</label>
+                <select id="grade" required>
+                    <option value="">選択してください</option>
+                    <option value="1">1年生</option>
+                    <option value="2">2年生</option>
+                    <option value="3">3年生</option>
+                    <option value="4">4年生</option>
+                    <option value="other">その他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>性別</label>
+                <select id="gender" required>
+                    <option value="">選択してください</option>
+                    <option value="male">男性</option>
+                    <option value="female">女性</option>
+                    <option value="other">回答しない</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>学籍番号(半角数字8桁)</label>
+                <input type="text" id="studentId" pattern="^[0-9]{8}$" placeholder="例: 20234006" required>
+                <div class="note">※入力された番号は端末内でハッシュ化されて送信されるため、研究者にも個人は特定されません。</div>
+            </div>
+            <div class="consent-box">
+                <label class="consent-label">
+                    <input type="checkbox" id="consentCheck">
+                    <span>研究目的でのデータ収集および、本システム利用時のログ取得に同意します。</span>
+                </label>
+            </div>
+            <button type="button" id="nextBtn" class="submit-btn" disabled>クイズへ進む</button>
+        </form>
+    </div>
+    <script src="js/screen2.js"></script>
+</body>
+</html>
