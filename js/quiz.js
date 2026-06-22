@@ -87,15 +87,25 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('exp_correctCount', 0);
     }
 
+    // 〜（allQuizDataおよび配列シャッフル、ローカルストレージ展開のコードは既存のままでOK）〜
+
     const quizArea = document.getElementById('quiz-area');
     const explanationArea = document.getElementById('explanation-area');
     const questionText = document.getElementById('question-text');
     const progressText = document.getElementById('progress-text');
+    const progressBar = document.getElementById('quiz-progress'); // プログレスバー要素を取得
 
     function renderQuestion() {
         quizArea.style.display = 'block';
         explanationArea.style.display = 'none';
-        progressText.innerText = `第 ${currentIndex + 1} 問 / ${questionCount}問中`;
+        
+        const currentNum = currentIndex + 1;
+        // テキストとプログレスバーを動的に連動
+        progressText.innerText = `第 ${currentNum} 問 / ${questionCount}問中`;
+        if (progressBar) {
+            progressBar.value = currentNum;
+            progressBar.max = questionCount;
+        }
         questionText.innerText = currentQuizSet[currentIndex].question;
     }
 
@@ -105,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isCorrect = (userAnswer === currentData.correctAnswer);
         if (isCorrect) {
             correctCount++;
-            localStorage.setItem('exp_correctCount', correctCount); // 点数を永続保存
+            localStorage.setItem('exp_correctCount', correctCount); 
         }
         const resultMark = document.getElementById('result-mark');
         if (isCorrect) {
@@ -130,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex++;
         
         if (currentIndex < questionCount) {
-            localStorage.setItem('exp_currentIndex', currentIndex); // 次の問題へ進んだ記録を保存
+            localStorage.setItem('exp_currentIndex', currentIndex); 
             renderQuestion();
         } else {
             localStorage.setItem('exp_score', correctCount);
