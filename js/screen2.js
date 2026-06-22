@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentIdInput = document.getElementById('studentId');
 
     const zenkakuToHankaku = (str) => {
-        return str.replace(/[０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+        return str.replace(/[0-9]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
     };
 
     const validateForm = () => {
