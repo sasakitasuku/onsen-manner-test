@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const isPerfect = (score === totalQuestions);
 
     if (isPerfect) {
-        resultMessage.innerText = "素晴らしい！温泉マナーマスターです！";
+        resultMessage.innerText = "素晴らしい!温泉マナーマスターです!";
         if (group === 'reward') {
             document.getElementById('coupon-area').style.display = 'block';
         }
     } else {
-        resultMessage.innerText = `惜しい！あと ${totalQuestions - score} 問で全問正解です。`;
+        resultMessage.innerText = `惜しい!あと ${totalQuestions - score} 問で全問正解です。`;
     }
     document.getElementById('go-survey-btn').addEventListener('click', () => {
         window.location.href = 'survey.html';

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             survey_q3: q3Value,
             survey_q4: q4Value,
             survey_q5: q5Value,
-            survey_reward_motivate: qRewardValue, // ★追加
+            survey_reward_motivate: qRewardValue,
             survey_free: freeTextValue
         };
 
