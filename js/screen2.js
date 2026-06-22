@@ -15,21 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = form.querySelectorAll('select, input');
     const nextBtn = document.getElementById('nextBtn');
     const studentIdInput = document.getElementById('studentId');
-
+    
     const zenkakuToHankaku = (str) => {
-        return str.replace(/[0-9]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+        return str.replace(/[０-９]/g, (s) => {
+            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        });
     };
 
     const validateForm = () => {
-        let idValue = zenkakuToHankaku(studentIdInput.value.trim());
-        studentIdInput.value = idValue; 
-
+        const idValue = zenkakuToHankaku(studentIdInput.value.trim());
+    
         const isAllFilled = Array.from(inputs).every(input => {
             if(input.type === 'checkbox') return input.checked;
             return input.value.trim() !== '';
         });
         
-        const isValidId = /^[０-９]{8}$/.test(idValue);
+        const isValidId = /^[0-9]{8}$/.test(idValue);
         
         if (isAllFilled && isValidId) {
             nextBtn.classList.add('active');
@@ -55,12 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextBtn.addEventListener('click', async () => {
         if (!nextBtn.classList.contains('active')) return;
-
+    
         nextBtn.classList.remove('active');
         nextBtn.setAttribute('disabled', 'true');
         nextBtn.innerText = "照会中...";
-
-        const finalId = studentIdInput.value.trim();
+    
+        const finalId = zenkakuToHankaku(studentIdInput.value.trim());
         const hashedStudentId = await hashString(finalId);
         
         const gasUrl = 'https://script.google.com/macros/s/AKfycbzt9zfQlVlc8oDxTlk7NRCK0j_M8DCSgMQRlmgeKFMA9To_KOtw4zyjETt-UVBXp_wuNg/exec'; 
