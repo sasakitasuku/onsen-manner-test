@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return input.value.trim() !== '';
         });
         
-        const isValidId = /^[0-9]{8}$/.test(idValue);
+        const isValidId = /^[０-９]{8}$/.test(idValue);
         
         if (isAllFilled && isValidId) {
             nextBtn.classList.add('active');
