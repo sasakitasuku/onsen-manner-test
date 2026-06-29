@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultMessage = document.getElementById('result-message');
     const isPerfect = (score === totalQuestions);
 
+    
+
     if (isPerfect) {
         resultMessage.innerText = "素晴らしい!温泉マナーマスターです!";
         if (group === 'reward') {
