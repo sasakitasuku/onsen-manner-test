@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-
     const group = localStorage.getItem('experiment_group');
     const score = parseInt(localStorage.getItem('exp_score')) || 0;
     const rewardQuestionArea = document.getElementById('reward-question-area');
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.status === 'DUPLICATE') {
                 alert("この学籍番号による回答は既に記録されています。\n重複してデータを送信することはできません。");
-                submitBtn.innerText = "送信エラー（重複）";
+                submitBtn.innerText = "送信エラー(重複)";
                 submitBtn.style.backgroundColor = "#e74c3c";
                 localStorage.setItem('exp_submitted', 'true');
             } else if (data.status === 'SUCCESS') {

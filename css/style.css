@@ -36,19 +36,19 @@
 
         .hero-image {
             width: 100%;
-            max-width: 300px;
-            height: auto;
             margin: 0 auto 30px auto;
-            border-radius: 10px;
-            background-color: #d1d8e0;
-            aspect-ratio: 4 / 3;
+            background-color: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7f8fa6;
         }
 
-        /* 開始ボタン */
+        .hero-image img {
+            width: 140px;
+            height: auto;
+            display: block;
+        }
+
         .start-btn {
             display: block;
             width: 100%;

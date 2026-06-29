@@ -24,14 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const validateForm = () => {
         const idValue = zenkakuToHankaku(studentIdInput.value.trim());
-    
         const isAllFilled = Array.from(inputs).every(input => {
             if(input.type === 'checkbox') return input.checked;
             return input.value.trim() !== '';
         });
-        
         const isValidId = /^[0-9]{8}$/.test(idValue);
-        
         if (isAllFilled && isValidId) {
             nextBtn.classList.add('active');
             nextBtn.removeAttribute('disabled');
@@ -56,28 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextBtn.addEventListener('click', async () => {
         if (!nextBtn.classList.contains('active')) return;
-    
         nextBtn.classList.remove('active');
         nextBtn.setAttribute('disabled', 'true');
         nextBtn.innerText = "照会中...";
-    
         const finalId = zenkakuToHankaku(studentIdInput.value.trim());
         const hashedStudentId = await hashString(finalId);
-        
         const gasUrl = 'https://script.google.com/macros/s/AKfycbzt9zfQlVlc8oDxTlk7NRCK0j_M8DCSgMQRlmgeKFMA9To_KOtw4zyjETt-UVBXp_wuNg/exec'; 
 
         try {
             const checkUrl = `${gasUrl}?action=checkId&hashedId=${hashedStudentId}`;
             const response = await fetch(checkUrl, { method: 'GET' });
             const data = await response.json();
-
             if (data.exists) {
                 alert("この学籍番号による回答は既に記録されています。\n重複して参加することはできません。");                
                 nextBtn.innerText = "登録済み";
                 nextBtn.style.backgroundColor = "#e74c3c";
                 localStorage.setItem('exp_submitted', 'true');
                 return; 
-
             } else {
                 localStorage.setItem('exp_grade', document.getElementById('grade').value);
                 localStorage.setItem('exp_gender', document.getElementById('gender').value);
